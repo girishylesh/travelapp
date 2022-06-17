@@ -1,0 +1,73 @@
+
+<mat-sidenav-container class="sidenav-container" fullscreen>
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+        <div>
+            <mat-list class="matList">              
+                <h4 mat-subheader>Booking</h4>
+                <mat-list-item class="matLink" routerLink="/dashboard/booking/trip" [routerLinkActive]="['is-active']">
+                    <mat-icon mat-list-icon>commute</mat-icon>
+                    <p mat-line>Book Trip</p>
+                </mat-list-item>
+                <mat-list-item class="matLink" routerLink="/dashboard/booking/view" [routerLinkActive]="['is-active']">
+                  <mat-icon mat-list-icon>person_pin</mat-icon>
+                  <h4 mat-line>Employee View</h4>
+                </mat-list-item>
+                <mat-list-item class="matLink" routerLink="/dashboard/booking/summary" [routerLinkActive]="['is-active']">
+                    <mat-icon mat-list-icon>notes</mat-icon>
+                    <h4 mat-line>Trip Summary</h4>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item class="matLink" routerLink="/dashboard/vehicle/view" [routerLinkActive]="['is-active']">
+                  <mat-icon mat-list-icon>local_taxi</mat-icon>
+                  <h4 mat-line>Vehicle</h4>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <!--<mat-list-item class="matLink" routerLink="/user" [routerLinkActive]="['is-active']">
+                    <mat-icon mat-list-icon>group</mat-icon>
+                    <h4 mat-line>User</h4>
+                </mat-list-item>
+                <mat-divider></mat-divider>-->
+              </mat-list>
+        </div>       
+    </mat-sidenav>
+    <mat-sidenav-content>
+            <mat-toolbar color="primary" class="toolbar">
+                    <mat-toolbar-row>
+                            <button
+                                type="button"
+                                aria-label="Toggle sidenav"
+                                mat-icon-button
+                                (click)="drawer.toggle()"
+                                >
+                                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                            </button>
+                            
+                            <span>Travel Management System</span>
+                            <span class="header-spacer"></span>                           
+                                <button mat-icon-button [matMenuTriggerFor]="menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item  *ngIf="isUserLoggedIn" routerLink="/user">
+                                            <mat-icon>account_circle</mat-icon>
+                                            <span>Profile</span>
+                                    </button>
+                                    <button mat-menu-item  (click)="logout()" *ngIf="isUserLoggedIn">
+                                        <mat-icon>exit_to_app</mat-icon>
+                                        <span>Logout</span>
+                                    </button>
+                                    <button mat-menu-item  *ngIf="!isUserLoggedIn">
+                                        <mat-icon>info_outline</mat-icon>
+                                        <span>About</span>
+                                    </button>
+                                </mat-menu>
+                    </mat-toolbar-row>
+            </mat-toolbar>
+
+        <!-- <app-booking></app-booking> -->   
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

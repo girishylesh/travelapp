@@ -1,0 +1,53 @@
+<div class="vehicle-container">
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon>local_taxi</mat-icon>
+                &nbsp; Register Vehicle
+            </mat-panel-title>
+            
+        </mat-expansion-panel-header>
+        <div class="vehicle-form">
+            <form [formGroup]="vehicleForm" (ngSubmit)="vehicleSubmit()">
+                <div>
+                    <mat-form-field class="vehicle-form-width">
+                        <input required matInput class="vehicleRegNo" id="vehicleRegNo" placeholder="Vehicle Registration Number"
+                            formControlName="vehicleRegNo">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="vehicle-form-width">
+                        <input required matInput class="vehicleName" id="vehicleName" placeholder="Vehicle Name"
+                            formControlName="vehicleName">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button type="button" mat-raised-button color="primary" (click)="vehicleSubmit()" [disabled]="!vehicleForm.valid">Register</button>
+                </div>
+            </form>
+        </div>
+    </mat-expansion-panel>
+</div>
+
+<div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- vehicle Number Column -->
+        <ng-container matColumnDef="vehicleRegNo">
+            <th mat-header-cell *matHeaderCellDef> Reg. No. </th>
+            <td mat-cell *matCellDef="let vehicle"> {{vehicle.vehicleRegNo}} </td>
+        </ng-container>
+
+        <!-- vehicle Date Column -->
+        <ng-container matColumnDef="vehicleName">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let vehicle"> {{vehicle.vehicleName}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

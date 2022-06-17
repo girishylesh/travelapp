@@ -1,0 +1,50 @@
+<mat-toolbar class="toolbar">Trip Summary</mat-toolbar>
+<div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Booking Number Column -->
+        <ng-container matColumnDef="bookingNumber">
+            <th mat-header-cell *matHeaderCellDef> Booking No. </th>
+            <td mat-cell *matCellDef="let booking"> {{booking.bookingNumber}} </td>
+        </ng-container>
+
+        <!-- Booking Date Column -->
+        <ng-container matColumnDef="bookingDate">
+            <th mat-header-cell *matHeaderCellDef> Booking Date </th>
+            <td mat-cell *matCellDef="let booking"> {{booking.bookingDate | date:'MM/dd/yyyy'}} </td>
+        </ng-container>
+
+        <!-- Trip From Column -->
+        <ng-container matColumnDef="tripFrom">
+            <th mat-header-cell *matHeaderCellDef> From </th>
+            <td mat-cell *matCellDef="let booking"> {{booking.tripFrom}} </td>
+        </ng-container>
+
+        <!-- Trip To Column -->
+        <ng-container matColumnDef="tripTo">
+            <th mat-header-cell *matHeaderCellDef> To </th>
+            <td mat-cell *matCellDef="let booking"> {{booking.tripTo}} </td>
+        </ng-container>
+
+        <!-- Trip date Column -->
+        <ng-container matColumnDef="tripDate">
+            <th mat-header-cell *matHeaderCellDef> Trip Date </th>
+            <td mat-cell *matCellDef="let booking"> {{booking.tripDate | date:'MM/dd/yyyy'}} </td>
+        </ng-container>
+
+        <!-- Vehicle Column -->
+        <ng-container matColumnDef="vehicleRegNo">
+            <th mat-header-cell *matHeaderCellDef> Vehicle </th>
+            <td mat-cell *matCellDef="let booking"> {{booking.vehicleRegNo}} </td>
+        </ng-container>
+        <ng-container matColumnDef="tripCompletedDate">
+            <th mat-header-cell *matHeaderCellDef> Trip Complete Date </th>
+            <td mat-cell *matCellDef="let booking">{{booking.tripCompletedDate | date:'MM/dd/yyyy'}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

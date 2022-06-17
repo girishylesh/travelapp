@@ -1,0 +1,11 @@
+table {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.toolbar
+{
+  max-height: 40px;
+  min-height: 40px;
+  font-size: 15px;
+}
